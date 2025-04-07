@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #000000, #000000);
+            color: #000000;
+            overflow-x: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: rgba(44, 62, 80, 0.9);
+            border-bottom: 2px solid #1abc9c; /* Düzeltildi */
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #1abc9c; /* Düzeltildi */
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #ffffff;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-content {
+            position: relative;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #1abc9c;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #ecf0f1;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #000000;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #1abc9c;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #000000;
+            margin-top: auto;
+        }
+
+        footer p {
+            font-size: 1rem;
+            color: #bdc3c7;
+        }
+
+        .logout-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 2rem;
+            background: #e74c3c;
+            color: rgb(255, 255, 255);
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="logout-btn">Çıkış Yap</button>
+    </form>
+    
+    <header>
+        <h1>Büyüleyici Dünya</h1>
+        <p>Keşfetmeye hazır mısınız?</p>
+    </header>
+    
+    <div class="container">
+        <div class="card">
+            <div class="card-content">
+                <h2>İstatistikler</h2>
+                <p>Son aylarda kaydedilen büyüme grafiği aşağıda gösterilmiştir. Trend yukarı yönlü devam etmektedir.</p>
+                <a href="#" class="btn">Daha Fazla</a>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-content">
+                <h2>Veri Analizi</h2>
+                <p>Farklı segmentlerdeki dağılımlar aşağıdaki grafikte gösterilmiştir. Her renk farklı bir kategoriyi temsil etmektedir.</p>
+                <a href="#" class="btn">Daha Fazla</a>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-content">
+                <h2>Keşfedin</h2>
+                <p>Platformumuzun sunduğu olanaklarla sınırları zorlamaya hazır mısınız? Yenilikçi çözümlerimizle tanışın ve fark yaratın.</p>
+                <a href="#" class="btn">Daha Fazla</a>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Büyüleyici Dünya. Tüm hakları saklıdır.</p>
+    </footer>
+</body>
+</html>

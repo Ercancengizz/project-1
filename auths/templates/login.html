@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LoginForm Dark Elegance</title>
+  <style>
+    :root {
+      --dark-blue: #0a192f;
+      --blue-accent: #64ffda;
+      --text-primary: #e6f1ff;
+      --text-secondary: #8892b0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #000;
+      background-image: radial-gradient(circle at top right, rgba(10, 41, 69, 0.5), transparent), 
+                        radial-gradient(circle at bottom left, rgba(10, 41, 69, 0.5), transparent);
+    }
+
+    .container {
+      width: 380px;
+      background: var(--dark-blue);
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(100, 255, 218, 0.1);
+      overflow: hidden;
+      transition: all 0.4s ease;
+      position: relative;
+    }
+
+    .container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 0 2px rgba(100, 255, 218, 0.2);
+    }
+
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--blue-accent);
+    }
+
+    .form-header {
+      text-align: center;
+      padding: 35px 0 25px;
+    }
+
+    .form-header h1 {
+      margin: 0;
+      font-size: 28px;
+      color: var(--text-primary);
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 35px;
+      padding: 0 35px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 15px 5px;
+      font-size: 16px;
+      color: var(--text-primary);
+      border: none;
+      border-bottom: 1px solid var(--text-secondary);
+      outline: none;
+      background: transparent;
+      transition: all 0.3s ease;
+    }
+
+    .input-group label {
+      position: absolute;
+      top: 0;
+      left: 40px;
+      padding: 15px 0;
+      font-size: 16px;
+      color: var(--text-secondary);
+      pointer-events: none;
+      transition: all 0.3s ease;
+    }
+
+    .input-group input:focus ~ label,
+    .input-group input:valid ~ label {
+      top: -25px;
+      font-size: 13px;
+      color: var(--blue-accent);
+      font-weight: 600;
+    }
+
+    .input-group input:focus,
+    .input-group input:valid {
+      border-bottom: 2px solid var(--blue-accent);
+    }
+
+    .button-wrapper {
+      padding: 0 35px 35px;
+    }
+
+    button {
+      width: 100%;
+      background: transparent;
+      border: 1px solid var(--blue-accent);
+      outline: none;
+      color: var(--blue-accent);
+      padding: 14px 0;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      letter-spacing: 1px;
+    }
+
+    button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 100%;
+      background: rgba(100, 255, 218, 0.1);
+      transition: all 0.3s ease;
+      z-index: 0;
+    }
+
+    button:hover {
+      color: var(--text-primary);
+    }
+
+    button:hover::before {
+      width: 100%;
+    }
+
+    button span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .login-link {
+      text-align: center;
+      margin-top: 25px;
+      padding-bottom: 35px;
+      font-size: 15px;
+      color: var(--text-secondary);
+    }
+
+    .login-link a {
+      color: var(--blue-accent);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .login-link a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      bottom: -2px;
+      left: 0;
+      background-color: var(--blue-accent);
+      transition: all 0.3s ease;
+    }
+
+    .login-link a:hover::after {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="form-header">
+      <h1>Giriş Yap</h1>
+    </div>
+
+    <form action="{% url 'login' %}" method="POST">
+      {% csrf_token %}
+      <div class="input-group">
+        <input type="text" id="username" name="username" required />
+        <label for="username">Kullanıcı Adı</label>
+      </div>
+
+      <div class="input-group">
+        <input type="password" id="password" name="password" required />
+        <label for="password">Şifre</label>
+      </div>
+
+      <div class="button-wrapper">
+        <button type="submit"><span>GİRİŞ YAP</span></button>
+      </div>
+
+      <div class="login-link">
+        Hesabınız yok mu? <a href="/register">Kayıt Ol</a>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
