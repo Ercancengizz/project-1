@@ -4,6 +4,7 @@ from django.contrib.auth import logout, authenticate, login as auth_login
 from django.contrib import messages
 from django.contrib.auth.models import User
 from auths.models import Register
+from django.contrib.auth.decorators import login_required
 
 def Register_view(request):
     if request.method == "POST":
@@ -34,7 +35,7 @@ def Register_view(request):
             messages.error(request, 'Formda hata var. Lütfen tekrar deneyin.')
     
     return render(request, 'register.html')
-
+@login_required
 def home(request):
     return render(request, 'home.html')
 
